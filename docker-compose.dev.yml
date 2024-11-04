@@ -13,7 +13,7 @@ services:
       - ./app:/app
       - /app/node_modules
     depends_on:
-      - mongo
+      - mongodb
     container_name: ${SERVICE_NAME}_app_dev
     env_file: .env
     networks:
@@ -30,7 +30,8 @@ services:
       MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
     ports:
       - "${MONGO_PORT}:${MONGO_PORT}"
-    volumes: cryptobot-gift:/data/db
+    volumes:
+      - cryptobot-gift:/data/db
     networks:
       - cryptobot-gift-network
 
