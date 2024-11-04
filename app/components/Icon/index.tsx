@@ -3,9 +3,10 @@ import { useEffect, useState, FC } from "react";
 
 interface IconProps {
   icon: string;
+  className?: string;
 }
 
-const AppIcon: FC<IconProps> = ({ icon }) => {
+const Icon: FC<IconProps> = ({ icon, className = "" }) => {
   const [LoadedIcon, setLoadedIcon] = useState<FC<{
     className?: string;
   }> | null>(null);
@@ -14,9 +15,10 @@ const AppIcon: FC<IconProps> = ({ icon }) => {
   useEffect(() => {
     const loadIcon = async () => {
       try {
-        const iconModule = await import(`../assets/icons/${icon}.svg`);
+        const iconModule = await import(`../../assets/media/icons/${icon}.svg`);
         setLoadedIcon(() => iconModule.default);
       } catch (err) {
+        console.log(err);
         setError(true);
       }
     };
@@ -31,7 +33,9 @@ const AppIcon: FC<IconProps> = ({ icon }) => {
 
   if (error) return null;
 
-  return LoadedIcon ? <LoadedIcon className={classNames(classes)} /> : null;
+  return LoadedIcon ? (
+    <LoadedIcon className={classNames(className, classes)} />
+  ) : null;
 };
 
-export default AppIcon;
+export default Icon;

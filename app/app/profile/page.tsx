@@ -1,3 +1,10 @@
+"use client";
+
+import { UserPreview } from "../../components/UserPreview";
+import { useTelegramApi } from "../../contexts/TelegramApiContext";
+
 export default function Page() {
-  return "Profile";
+  const { user } = useTelegramApi();
+
+  return <div>{user && <UserPreview user={user} />}</div>;
 }

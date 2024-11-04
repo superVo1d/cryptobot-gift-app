@@ -1,12 +1,18 @@
 "use client";
 
-import { type PropsWithChildren, useEffect } from "react";
+import { type PropsWithChildren, useEffect, useRef } from "react";
 import { ErrorBoundary } from "../ErrorBoundary";
 import { ErrorPage } from "../ErrorPage";
 import { useDidMount } from "../../hooks/useDidMount";
+import { TelegramApiProvider } from "../../contexts/TelegramApiContext";
+import { LangProvider } from "../../contexts/LangContext";
 
 function App(props: PropsWithChildren) {
-  return props.children;
+  return (
+    <TelegramApiProvider>
+      <LangProvider>{props.children}</LangProvider>
+    </TelegramApiProvider>
+  );
 }
 
 function RootInner({ children }: PropsWithChildren) {

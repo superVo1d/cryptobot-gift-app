@@ -1,4 +1,7 @@
 import type { TelegramWebApps } from "telegram-webapps-types-new";
+import { initDataRawMock } from "../mocks";
+
+const isDev = process.env.NODE_ENV === "development";
 
 declare global {
   interface Window {
@@ -7,18 +10,26 @@ declare global {
 }
 
 export default class TelegramApi {
+  private static instance: TelegramApi;
   private readonly _tg: TelegramWebApps.WebApp;
 
   constructor() {
-    this._tg = window.Telegram.WebApp;
+    this._tg = window.Telegram?.WebApp;
     this.ready();
 
     this._tg?.MainButton.setParams({
-      color: "#171717",
-      text_color: "#fff",
+      //   color: "#171717",
+      //   text_color: "#fff",
       is_active: true,
       is_visible: false,
     });
+  }
+
+  public static getInstance(): TelegramApi {
+    if (!TelegramApi.instance) {
+      TelegramApi.instance = new TelegramApi();
+    }
+    return TelegramApi.instance;
   }
 
   get initDataUnsafe() {
@@ -26,7 +37,7 @@ export default class TelegramApi {
   }
 
   get initData() {
-    return this._tg?.initData;
+    return isDev ? initDataRawMock : this._tg?.initData;
   }
 
   get theme() {
@@ -81,10 +92,10 @@ export default class TelegramApi {
   setMainButtonAccessibility(enable: boolean = true): void {
     if (enable) {
       this._tg?.MainButton.enable();
-      this._tg?.MainButton.setParams({ color: "#F00" });
+      //   this._tg?.MainButton.setParams({ color: "#F00" });
     } else {
       this._tg?.MainButton.disable();
-      this._tg?.MainButton.setParams({ color: "#171717" });
+      //   this._tg?.MainButton.setParams({ color: "#171717" });
     }
   }
 

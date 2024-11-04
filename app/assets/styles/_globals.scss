@@ -10,10 +10,19 @@
 
 :root {
   --app-font-regular: "SF Pro Display", Helvetica, Arial, sans-serif;
+  --app-color-tab-bar: #959595;
+  --app-color-tab-bar-background: #{rgba(#f1f1f2bf, 0.75)};
+  --app-color-primary: #007aff;
+  --app-color-separator: #{rgba(#3c3c435c, 0.36)};
+  --app-color-text-primary: #000;
+  --app-color-text-secondary: rgba(142, 142, 147, 1);
+  --app-color-accent-gold: rgba(241, 170, 5, 1);
+  --app-color-background: #fff;
 }
 
 body,
 html {
+  color: var(--app-color-text-primary);
   font-family: var(--app-font-regular);
   height: 100vh;
 }
@@ -50,4 +59,11 @@ html {
   overflow-y: scroll;
   overflow-x: hidden;
   min-height: 100%;
+}
+
+a:link,
+a:visited {
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
 }

@@ -1,0 +1,52 @@
+@use "./../../assets/styles/typography";
+@use "./../../assets/styles/mixins";
+
+.preview {
+  text-align: center;
+  padding-top: 0.8rem;
+
+  &__photo {
+    background-color: var(--app-color-tab-bar);
+    display: inline-block;
+    border-radius: 50%;
+    height: 10rem;
+    margin-bottom: 2rem;
+    position: relative;
+    width: 10rem;
+  }
+
+  &__label {
+    background: var(--app-color-accent-gold);
+    border: 0.2rem solid var(--app-color-background);
+    border-radius: 3.2rem;
+    padding: 0 0.8rem;
+    color: #fff;
+    position: absolute;
+    bottom: -0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__title {
+    @include mixins.font(typography.$font-h2);
+
+    display: flex;
+    gap: 0.6rem;
+    height: 3.2rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__caption {
+    @include mixins.font(typography.$font-caption);
+
+    color: var(--app-color-text-secondary);
+  }
+}

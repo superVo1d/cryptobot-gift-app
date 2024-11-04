@@ -1,0 +1,48 @@
+@use "./../../assets/styles/typography";
+@use "./../../assets/styles/mixins";
+
+.navbar {
+  background: var(--app-color-tab-bar-background);
+  backdrop-filter: blur(10rem);
+  border-top: 0.1rem solid var(--app-color-separator);
+  bottom: 0;
+  display: flex;
+  position: fixed;
+  width: 100%;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0.8rem 0 3.4rem;
+    width: 100%;
+  }
+
+  &__item {
+    color: var(--app-color-tab-bar);
+    flex: 1 1 0;
+    list-style: none;
+
+    &_active {
+      color: var(--app-color-primary) !important;
+    }
+  }
+
+  a {
+    @include mixins.font(typography.$font-small);
+
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.4rem;
+    text-align: center;
+  }
+
+  .icon {
+    display: block;
+    fill: currentColor;
+    width: auto;
+    height: 2.6rem;
+  }
+}
