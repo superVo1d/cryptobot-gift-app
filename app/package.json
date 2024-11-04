@@ -12,17 +12,21 @@
     "@types/node": "22.8.7",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
+    "classnames": "^2.5.1",
+    "eruda": "^3.4.0",
     "eslint": "9.14.0",
     "eslint-config-next": "15.0.2",
     "next": "^15.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "sass": "^1.80.6",
     "typescript": "5.6.3"
   },
   "devDependencies": {
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
-    "stylelint-scss": "^6.8.1"
+    "stylelint-scss": "^6.8.1",
+    "telegram-webapps-types-new": "^1.2.3"
   }
 }

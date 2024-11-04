@@ -1,22 +1,33 @@
-import type { Metadata } from 'next'
-import '../styles/globals.css'
+import type { Metadata, Viewport } from "next";
+import "../assets/styles/main.scss";
+import { Root } from "../components/Root";
 
 export const metadata: Metadata = {
-  title: 'Home',
-  description: 'Welcome to Next.js',
-}
+  title: "Gift App",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  userScalable: false,
+  initialScale: 1,
+  maximumScale: 1,
+  minimumScale: 1,
+};
 
 export default function RootLayout({
-    // Layouts must accept a children prop.
-    // This will be populated with nested layouts or pages
-    children,
-  }: {
-    children: React.ReactNode
-  }) {
-    return (
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    )
-  }
-  
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        <div id="wrap">
+          <div id="content">
+            <Root>{children}</Root>
+          </div>
+        </div>
+      </body>
+    </html>
+  );
+}

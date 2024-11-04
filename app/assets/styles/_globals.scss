@@ -1,0 +1,53 @@
+@use "typography";
+@use "mixins";
+
+* {
+  box-sizing: border-box;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:root {
+  --app-font-regular: "SF Pro Display", Helvetica, Arial, sans-serif;
+}
+
+body,
+html {
+  font-family: var(--app-font-regular);
+  height: 100vh;
+}
+
+body {
+  @include mixins.font(typography.$font-body);
+
+  -webkit-overflow-scrolling: auto;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  line-height: inherit;
+  margin: 0;
+  overflow: hidden;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.clearfix {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.page {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: 100%;
+}

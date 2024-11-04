@@ -10,7 +10,8 @@ services:
       - NODE_ENV=development
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
     volumes:
-      - ./app:/app
+      - .:/app
+      - /app/.next
       - /app/node_modules
     depends_on:
       - mongodb

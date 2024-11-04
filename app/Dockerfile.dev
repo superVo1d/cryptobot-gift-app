@@ -10,6 +10,6 @@ COPY . .
 
 ENV NODE_ENV=development
 
-EXPOSE 3000
+EXPOSE ${APP_PORT}
 
 CMD ["npm", "run", "dev"]

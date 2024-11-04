@@ -1,0 +1,6 @@
+@use "./../../assets/styles/typography";
+@use "./../../assets/styles/mixins";
+
+.text {
+  $selector: &;
+}
