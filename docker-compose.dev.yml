@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.dev
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    environment:
+      - NODE_ENV=development
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    container_name: ${SERVICE_NAME}_app_dev
+    env_file: .env
+    networks:
+      - cryptobot-gift-network
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: ${SERVICE_NAME}_mongodb_prod
+    env_file: .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    ports:
+      - "${MONGO_PORT}:${MONGO_PORT}"
+    volumes: cryptobot-gift:/data/db
+    networks:
+      - cryptobot-gift-network
+
+volumes:
+  cryptobot-gift:
+    external: true
+
+networks:
+  cryptobot-gift-network:
+    external: true
