@@ -41,4 +41,3 @@ volumes:
 
 networks:
   cryptobot-gift-network:
-    external: true
