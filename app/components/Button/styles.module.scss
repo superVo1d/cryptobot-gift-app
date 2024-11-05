@@ -1,0 +1,31 @@
+@use "./../../assets/styles/typography";
+@use "./../../assets/styles/mixins";
+
+.button {
+  @include mixins.font(typography.$font-caption);
+
+  align-items: center;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.6rem 1.6rem;
+  border-radius: 3.2rem;
+  display: inline-flex;
+  background: var(--app-color-primary);
+  line-height: 1.8rem;
+  height: 3rem;
+
+  &__icon {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+
+  &:link,
+  &:visited {
+    clear: all;
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+  }
+}

@@ -5,6 +5,7 @@ import { useLangContext } from "../../contexts/LangContext";
 import giftsPageStyles from "./styles.module.scss";
 import { IGift } from "../../types/gift";
 import { useTelegramApi } from "../../contexts/TelegramApiContext";
+import { GiftPreview } from "../../components/GiftPreview";
 
 export default function Page() {
   const { langData } = useLangContext();
@@ -45,7 +46,11 @@ export default function Page() {
           dangerouslySetInnerHTML={{ __html: langData["gifts_subtitle"] }}
         />
       </div>
-      <div>{gifts?.map((item) => item.name)}</div>
+      <div>
+        {gifts?.map((item, index) => (
+          <GiftPreview gift={item} key={index} />
+        ))}
+      </div>
     </div>
   );
 }

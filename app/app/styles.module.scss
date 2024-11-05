@@ -2,6 +2,13 @@
 @use "./../assets/styles/mixins";
 
 .store {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    padding: 1.6rem;
+  }
+
   &__header {
     display: flex;
     flex-direction: column;

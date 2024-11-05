@@ -8,7 +8,7 @@ services:
       - "${APP_PORT}:${APP_PORT}"
     environment:
       - NODE_ENV=development
-      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
     volumes:
       - .:/app
       - /app/.next

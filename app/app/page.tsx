@@ -6,6 +6,8 @@ import { useLangContext } from "../contexts/LangContext";
 import { useTelegramApi } from "../contexts/TelegramApiContext";
 import storePageStyles from "./styles.module.scss";
 import { IGift } from "../types/gift";
+import { GiftPreview } from "../components/GiftPreview";
+import classNames from "classnames";
 
 export default function Page() {
   const { langData } = useLangContext();
@@ -35,7 +37,7 @@ export default function Page() {
   }, [isAuthenticated]);
 
   return (
-    <div className={storePageStyles.store}>
+    <div className={classNames("page", storePageStyles.store)}>
       <div className={storePageStyles.store__header}>
         <Icon className={storePageStyles.store__icon} icon="gift" />
         <div
@@ -47,7 +49,11 @@ export default function Page() {
           dangerouslySetInnerHTML={{ __html: langData["store_subtitle"] }}
         />
       </div>
-      <div>{gifts?.map((item) => item.name)}</div>
+      <div className={storePageStyles.store__list}>
+        {gifts?.map((item, index) => (
+          <GiftPreview gift={item} key={index} />
+        ))}
+      </div>
     </div>
   );
 }

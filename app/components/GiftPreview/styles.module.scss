@@ -1,0 +1,95 @@
+@use "./../../assets/styles/typography";
+@use "./../../assets/styles/mixins";
+
+.gift {
+  position: relative;
+
+  &__content {
+    text-align: center;
+    padding: 3.4rem 0.6rem 1.6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__label {
+    position: absolute;
+    top: 0.8rem;
+    right: 1.2rem;
+  }
+
+  &__image {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0.5rem;
+    height: 12.8rem;
+    width: 12.8rem;
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__name {
+    font-weight: 600;
+    margin: 0.4rem auto 1.2rem;
+  }
+
+  &__background {
+    @include mixins.font(typography.$font-caption);
+
+    border-radius: 1.2rem;
+    color: var(--app-color-text-secondary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    &_type-1 {
+      background: linear-gradient(
+        180deg,
+        rgba(254, 160, 65, 0.2) 0%,
+        rgba(254, 159, 65, 0.1) 100%
+      );
+    }
+
+    &_type-2 {
+      background: linear-gradient(
+        180deg,
+        rgba(70, 209, 0, 0.2) 0%,
+        rgba(70, 209, 0, 0.06) 100%
+      );
+    }
+
+    &_type-3 {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 122, 255, 0.2) 0%,
+        rgba(0, 122, 255, 0.05) 100%
+      );
+    }
+
+    &_type-4 {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 71, 71, 0.2) 0%,
+        rgba(255, 71, 71, 0.05) 100%
+      );
+    }
+
+    svg {
+      object-fit: cover;
+      opacity: 0.05;
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  &__label {
+    @include mixins.font(typography.$font-caption);
+
+    color: var(--app-color-text-secondary);
+  }
+}
