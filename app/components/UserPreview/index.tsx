@@ -1,16 +1,18 @@
 import { FC } from "react";
-import { IUser } from "../../contexts/TelegramApiContext";
+import { ITelegramUser } from "../../contexts/TelegramApiContext";
 import userPreviewStyles from "./styles.module.scss";
 import Icon from "../Icon";
+import LazyImage from "../LazyImage";
 
 export interface IUserPreview {
-  user: IUser;
+  user: ITelegramUser;
 }
 
 export const UserPreview: FC<IUserPreview> = ({ user }) => {
   return (
     <div className={userPreviewStyles.preview}>
       <div className={userPreviewStyles.preview__photo}>
+        <LazyImage src={`/f/${user.id}.jpg`} />
         <div className={userPreviewStyles.preview__label}>{"#1"}</div>
       </div>
       <div className={userPreviewStyles.preview__text}>

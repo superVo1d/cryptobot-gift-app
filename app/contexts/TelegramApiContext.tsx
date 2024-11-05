@@ -1,16 +1,18 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useMemo, useState } from "react";
 import TelegramApi from "../services/telegram";
 import { useClientOnce } from "../hooks/useClientOnce";
 
 const TelegramApiContext = createContext<{
   telegramApi?: TelegramApi;
-  user?: IUser;
+  user?: ITelegramUser;
+  isAuthenticated: boolean;
 }>({
   telegramApi: undefined,
   user: undefined,
+  isAuthenticated: false,
 });
 
-export interface IUser {
+export interface ITelegramUser {
   id: number;
   first_name: string;
   last_name: string;
@@ -24,7 +26,8 @@ export const TelegramApiProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [telegramApi, setTelelgramApi] = useState<TelegramApi>();
-  const [user, setUser] = useState<IUser>();
+  const [user, setUser] = useState<ITelegramUser>();
+  const isAuthenticated = useMemo(() => !!user, [user]);
 
   useClientOnce(() => {
     const telegramApiInstance = TelegramApi.getInstance();
@@ -51,7 +54,7 @@ export const TelegramApiProvider: React.FC<{ children: React.ReactNode }> = ({
   });
 
   return (
-    <TelegramApiContext.Provider value={{ telegramApi, user }}>
+    <TelegramApiContext.Provider value={{ telegramApi, user, isAuthenticated }}>
       {children}
     </TelegramApiContext.Provider>
   );

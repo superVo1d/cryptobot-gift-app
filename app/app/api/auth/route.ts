@@ -1,3 +1,5 @@
+import { loadUserInfo } from "../bot/route";
+import { createSession } from "./session";
 import { validateTelegramWebAppData } from "./validateTelegramWebAppData";
 
 export interface IAuthRequest {
@@ -17,6 +19,12 @@ export async function POST(request: Request) {
   try {
     const user = validateTelegramWebAppData(initData);
 
+    loadUserInfo(user.id);
+    // get user from database
+    // update if nessecary
+
+    createSession(user.id);
+
     return Response.json(
       {
         success: true,
@@ -24,7 +32,6 @@ export async function POST(request: Request) {
       },
       {
         status: 200,
-        // headers: { "Set-Cookie": `token=${token.value}` },
       }
     );
   } catch (error) {

@@ -1,6 +1,7 @@
 import crypto from "crypto";
+import { ITelegramUser } from "../../../contexts/TelegramApiContext";
 
-const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN as string;
+const telegramToken = process.env.TELEGRAM_TOKEN as string;
 
 interface TelegramData {
   auth_date: string;
@@ -10,9 +11,7 @@ interface TelegramData {
 class TelegramDataError extends Error {}
 class TelegramDataIsOutdated extends Error {}
 
-export function validateTelegramWebAppData(
-  initData: string
-): Record<string, any> {
+export function validateTelegramWebAppData(initData: string): ITelegramUser {
   /*
     Check if received data from Telegram Mini App is real.
 
@@ -47,12 +46,10 @@ export function validateTelegramWebAppData(
     .map((key) => `${key}=${data[key]}`)
     .join("\n");
 
-  console.log(dataCheckString);
-
   // Generate secret key using bot token
   const secretKey = crypto
     .createHmac("sha256", "WebAppData")
-    .update(TELEGRAM_TOKEN)
+    .update(telegramToken)
     .digest();
   const computedHash = crypto
     .createHmac("sha256", secretKey)

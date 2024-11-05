@@ -1,0 +1,49 @@
+.image {
+  background-color: var(--app-color-tab-bar);
+  border-radius: 50%;
+  margin: 0;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    opacity: 0;
+    position: relative;
+    transition: opacity 0.1s ease-in-out;
+    height: auto;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &_loaded {
+    img {
+      opacity: 1;
+    }
+
+    /* stylelint-disable selector-class-pattern */
+
+    .placeholder__text {
+      opacity: 1;
+    }
+  }
+}
+
+.placeholder {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+
+  &__text {
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    transition: opacity 0.2s ease-in-out;
+  }
+}

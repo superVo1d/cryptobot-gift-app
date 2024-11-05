@@ -6,9 +6,7 @@
   padding-top: 0.8rem;
 
   &__photo {
-    background-color: var(--app-color-tab-bar);
     display: inline-block;
-    border-radius: 50%;
     height: 10rem;
     margin-bottom: 2rem;
     position: relative;
@@ -25,6 +23,7 @@
     bottom: -0.8rem;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
   }
 
   &__text {
